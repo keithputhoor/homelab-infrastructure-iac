@@ -1,0 +1,12 @@
+Customer,Course,Item,Quantity,Unit_Price,Total
+Guest_01,Starters,Garlic Bread,3,5.50,16.50
+Guest_02,Starters,Crispy Calamari,5,8.00,40.00
+Guest_03,Starters,Bruschetta,2,6.00,12.00
+Guest_01,Main Course,Grilled Ribeye Steak,4,24.00,96.00
+Guest_02,Main Course,Truffle Mushroom Risotto,6,18.50,111.00
+Guest_03,Main Course,Pan-Seared Salmon,3,21.00,63.00
+Guest_01,Dessert,Tiramisu,5,7.50,37.50
+Guest_02,Dessert,Molten Lava Cake,4,8.00,32.00
+Guest_03,Beverages,Fresh Mint Lemonade,7,4.50,31.50
+Guest_01,Beverages,Iced Espresso,4,5.00,20.00
+

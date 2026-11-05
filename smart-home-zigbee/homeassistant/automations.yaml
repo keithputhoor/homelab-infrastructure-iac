@@ -1,0 +1,21 @@
+# Home Assistant Automation: Hobeian ZG-102ZM Vibration & mmWave Presence Logic
+- alias: "Security - Tamper & Presence Alert"
+  description: "Triggers alert when Hobeian ZG-102ZM detects vibration while mmWave reports room vacant"
+  mode: single
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.hobeian_zg_102zm_vibration
+      to: "on"
+  condition:
+    - condition: state
+      entity_id: binary_sensor.room_mmwave_presence
+      state: "off"
+  action:
+    - service: switch.turn_on
+      target:
+        entity_id: switch.custom_micro_relay_light
+    - service: notify.persistent_notification
+      data:
+        title: "Vibration Anomaly Detected"
+        message: "Hobeian ZG-102ZM triggered with no active room occupancy."
+

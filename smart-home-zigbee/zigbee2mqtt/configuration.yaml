@@ -1,0 +1,19 @@
+# Zigbee2MQTT configuration.yaml (SLZB-06p7 PoE/LAN Network Coordinator)
+homeassistant: true
+mqtt:
+  base_topic: zigbee2mqtt
+  server: mqtt://<MQTT_BROKER_IP>:1883
+  user: mqtt_user
+  password: "<MQTT_SECRET>"
+serial:
+  port: tcp://<COORDINATOR_IP>:6638
+  baudrate: 115200
+  adapter: zstack
+  disable_led: false
+advanced:
+  network_key: GENERATE
+  pan_id: GENERATE
+  channel: 20
+  transmit_power: 20
+frontend:
+  port: 8080

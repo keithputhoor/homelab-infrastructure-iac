@@ -1,0 +1,68 @@
+version: "3.9"
+services:
+  jellyfin:
+    image: lscr.io/linuxserver/jellyfin:latest
+    container_name: jellyfin
+    environment:
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+      - TZ=${TZ:-UTC}
+    volumes:
+      - ./config/jellyfin:/config
+      - /mnt/storage/library/media_1:/data/library/media_1
+      - /mnt/storage/library/media_2:/data/library/media_2
+    devices:
+      - /dev/dri:/dev/dri
+    ports:
+      - "8096:8096"
+    restart: unless-stopped
+
+  jellyseerr:
+    image: fallenbagel/jellyseerr:latest
+    container_name: jellyseerr
+    environment:
+      - TZ=${TZ:-UTC}
+    volumes:
+      - ./config/jellyseerr:/app/config
+    ports:
+      - "5055:5055"
+    restart: unless-stopped
+
+  bazarr:
+    image: lscr.io/linuxserver/bazarr:latest
+    container_name: bazarr
+    environment:
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+      - TZ=${TZ:-UTC}
+    volumes:
+      - ./config/bazarr:/config
+      - /mnt/storage:/data
+    ports:
+      - "6767:6767"
+    restart: unless-stopped
+
+  kavita:
+    image: jvmilazz0/kavita:latest
+    container_name: kavita
+    environment:
+      - TZ=${TZ:-UTC}
+    volumes:
+      - ./config/kavita:/kavita/config
+      - /mnt/storage/documents:/documents
+    ports:
+      - "5000:5000"
+    restart: unless-stopped
+
+  n8n:
+    image: docker.n8n.io/n8nio/n8n:latest
+    container_name: n8n
+    environment:
+      - TZ=${TZ:-UTC}
+      - N8N_SECURE_COOKIE=false
+    volumes:
+      - ./config/n8n:/home/node/.n8n
+      - /mnt/storage:/data
+    ports:
+      - "5678:5678"
+    restart: unless-stopped

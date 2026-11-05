@@ -1,0 +1,11 @@
+.env
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+config/
+ollama_data/
+open-webui_data/
+.DS_Store
+Thumbs.db
+
